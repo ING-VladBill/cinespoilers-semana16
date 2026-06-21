@@ -1,18 +1,19 @@
-import { PageContainer } from "@/components/layout/page-container";
+import HeroSection from "@/components/home/hero-section";
+import PageContainer from "@/components/layout/page-container";
+import MoviesGrid from "@/components/movies/movies-grid";
 
-export function HomePage() {
+const HomePage = () => {
   return (
-    <PageContainer>
-      <section className="py-24">
-        <h1 className="text-5xl font-bold tracking-tight">
-          CineSpoilerS
-        </h1>
+    <>
+      <PageContainer>
+        <HeroSection />
+      </PageContainer>
 
-        <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-          Modern movie ticket platform built with React,
-          TypeScript and shadcn/ui.
-        </p>
-      </section>
-    </PageContainer>
+      <PageContainer>
+        <MoviesGrid />
+      </PageContainer>
+    </>
   );
-}
+};
+
+export default HomePage;

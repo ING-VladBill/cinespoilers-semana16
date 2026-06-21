@@ -1,15 +1,17 @@
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
-interface PageContainerProps {
+interface Props {
   children: ReactNode;
 }
 
-export function PageContainer({
+const PageContainer = ({
   children,
-}: PageContainerProps) {
+}: Props) => {
   return (
-    <div className="mx-auto w-full max-w-7xl px-6">
+    <div className="mx-auto max-w-7xl px-6">
       {children}
     </div>
   );
-}
+};
+
+export default PageContainer;
