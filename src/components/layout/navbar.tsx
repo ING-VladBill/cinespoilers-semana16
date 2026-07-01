@@ -1,6 +1,7 @@
-import { Film, Menu } from "lucide-react";
+import { Film, Menu, ShoppingCart } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 
+import { useCartStore } from "@/store/cart-store";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -20,6 +21,8 @@ const navigationItems = [
 ];
 
 export function Navbar() {
+  const itemCount = useCartStore((state) => state.items.length);
+
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
@@ -46,6 +49,17 @@ export function Navbar() {
               </NavLink>
             </Button>
           ))}
+
+          <Button asChild variant="ghost" className="relative">
+            <NavLink to="/cart">
+              <ShoppingCart className="h-4 w-4" />
+              {itemCount > 0 && (
+                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[10px] font-medium text-white">
+                  {itemCount}
+                </span>
+              )}
+            </NavLink>
+          </Button>
         </nav>
 
         <Sheet>
@@ -73,6 +87,13 @@ export function Navbar() {
                   </NavLink>
                 </Button>
               ))}
+
+              <Button asChild variant="ghost" className="justify-start">
+                <NavLink to="/cart">
+                  <ShoppingCart className="h-4 w-4" />
+                  Carrito {itemCount > 0 && `(${itemCount})`}
+                </NavLink>
+              </Button>
             </div>
           </SheetContent>
         </Sheet>

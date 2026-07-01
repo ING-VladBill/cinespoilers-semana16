@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
@@ -14,6 +15,7 @@ const BACKDROP_URL = "https://image.tmdb.org/t/p/original";
 export function MovieDetailPage() {
   const { movieId } = useParams<{ movieId: string }>();
   const addItem = useCartStore((state) => state.addItem);
+  const [added, setAdded] = useState(false);
 
   const { data: movie, isLoading, isError } = useQuery({
     queryKey: ["movie", movieId],
@@ -46,6 +48,12 @@ export function MovieDetailPage() {
     (v) => v.site === "YouTube" && v.type === "Trailer"
   );
 
+  const handleAddToCart = () => {
+    addItem(movie);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
+  };
+
   return (
     <>
       {movie.backdrop_path && (
@@ -61,7 +69,7 @@ export function MovieDetailPage() {
         <div className="flex flex-col gap-6 md:flex-row md:-mt-24">
           {movie.poster_path && (
             <img
-              src={'${IMAGE_URL}${movie.poster_path}'}
+              src={`${IMAGE_URL}${movie.poster_path}`}
               alt={movie.title}
               className="w-48 shrink-0 rounded-lg shadow-lg"
             />
@@ -88,8 +96,8 @@ export function MovieDetailPage() {
 
             <p className="mt-4 text-muted-foreground">{movie.overview}</p>
 
-            <Button className="mt-6" onClick={() => addItem(movie)}>
-              Comprar
+            <Button className="mt-6" onClick={handleAddToCart} disabled={added}>
+              {added ? "Agregado ✓" : "Comprar"}
             </Button>
           </div>
         </div>
@@ -104,7 +112,7 @@ export function MovieDetailPage() {
                   <img
                     src={
                       actor.profile_path
-                        ? '${IMAGE_URL}${actor.profile_path}'
+                        ? `${IMAGE_URL}${actor.profile_path}`
                         : "https://placehold.co/200x300?text=Sin+foto"
                     }
                     alt={actor.name}
