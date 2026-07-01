@@ -52,7 +52,7 @@ export function MovieDetailPage() {
         <div
           className="h-72 w-full bg-cover bg-center"
           style={{
-            backgroundImage: url(${BACKDROP_URL}${movie.backdrop_path}),
+            backgroundImage: `url(${BACKDROP_URL}${movie.backdrop_path})`,
           }}
         />
       )}
@@ -61,7 +61,7 @@ export function MovieDetailPage() {
         <div className="flex flex-col gap-6 md:flex-row md:-mt-24">
           {movie.poster_path && (
             <img
-              src={${IMAGE_URL}${movie.poster_path}}
+              src={'${IMAGE_URL}${movie.poster_path}'}
               alt={movie.title}
               className="w-48 shrink-0 rounded-lg shadow-lg"
             />
@@ -104,7 +104,7 @@ export function MovieDetailPage() {
                   <img
                     src={
                       actor.profile_path
-                        ? ${IMAGE_URL}${actor.profile_path}
+                        ? '${IMAGE_URL}${actor.profile_path}'
                         : "https://placehold.co/200x300?text=Sin+foto"
                     }
                     alt={actor.name}
