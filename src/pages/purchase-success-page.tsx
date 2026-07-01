@@ -28,7 +28,7 @@ export function PurchaseSuccessPage() {
   return (
     <PageContainer>
       <div className="my-20 flex flex-col items-center text-center">
-        <CheckCircle2 className="h-16 w-16 text-green-600" />
+        <CheckCircle2 className="h-16 w-16 text-green-400" />
 
         <h1 className="mt-4 text-2xl font-bold">¡Compra exitosa!</h1>
 

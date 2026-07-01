@@ -12,13 +12,15 @@ const MoviesGrid = () => {
   });
 
   return (
-    <section className="py-4">
-      <header className="mb-8">
-        <h2 className="text-3xl font-bold">Featured Movies</h2>
+    <section className="py-16">
+      <header className="mb-10 border-b border-border pb-6">
+        <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+          Now Playing
+        </span>
 
-        <p className="mt-2 text-muted-foreground">
-          Most popular releases right now.
-        </p>
+        <h2 className="font-marquee mt-2 text-4xl tracking-wide">
+          Featured Movies
+        </h2>
       </header>
 
       {isError && (
